@@ -11,7 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'v1'=>[
+            'class'=>'api\modules\v1\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -44,6 +48,13 @@ return [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule',
                  'controller' => 'user'
+                ],
+                // 以下为版本控制
+                ['class' => 'yii\rest\UrlRule',
+                 'controller' => 'v1/user',
+//                 'extraPatterns'=>[
+//                     'GET index'=>'index',
+//                 ],
                 ],
             ],
         ],
